@@ -46,7 +46,9 @@ aparelhotelemovel.alterarpreco(14500)
 */
 
 
-const maxhp = 200
+const maxhp = 250
+const maxdef = 500
+const maxatk = 250
 
 class Guerreiro{
     constructor(player, hp, defesa, ataque){
@@ -70,13 +72,13 @@ class Guerreiro{
 
 
     slash(player){
-        if(this.atk < (player.def / 2)){
+        if(this.atk < player.def){
             console.log(`Seu ataque não causou dano pois a defesa do jogador ${player.pl} é muito alta.`)
             player.def = player.def - this.atk
         }
         else{
-            player.hp = player.hp - (this.atk - (player.def / 2))
-            console.log(`O ataque causou ${this.atk - (player.def / 2)} de dano e deixou seu oponente com ${player.hp} de vida.`)
+            player.hp = player.hp - (this.atk - player.def)
+            console.log(`O ataque causou ${this.atk - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
             player.def = player.def - 5
         }
         this.morte(player)
@@ -117,24 +119,36 @@ class Guerreiro{
 
     escalibur(player){
         this.atk += 60
+        if(player.atk > maxatk){
+            player.atk = maxatk
+        }
         console.log(`O Jogador ${this.pl} pegou a ESCALIBUR e aumentou seu ataque em 100 de dano.`)
         stats()
     }
 
     mjolnir(player){
         this.atk += 90
+        if(player.atk > maxatk){
+            player.atk = maxatk
+        }
         console.log(`O Jogador ${this.pl} pegou O MJOLNIR e aumentou seu ataque em 200.`)
         stats()
     }
 
     ornamental(player){
         this.def += 50
+        if(player.def > maxdef){
+            player.def = maxdef
+        }
         console.log(`O Jogador ${this.pl} pegou o escudo ornamental e aumentou sua defesa em 100.`)
         stats()
     }
 
     pesado(player){
         this.def += 80
+        if(player.def > maxdef){
+            player.def = maxdef
+        }
         console.log(`O Jogador ${this.pl} pegou o escudo pesado e aumentou sua defesa em 100.`)
         stats()
     }
@@ -143,8 +157,8 @@ class Guerreiro{
         var chance = Math.floor(Math.random() * 20) + 1
         console.log(`chance ${chance}`)
         if(chance>=15){
-                player.hp = player.hp - ((this.atk * 2) - (player.def / 2))
-                console.log(`O ataque causou ${(this.atk * 2) - (player.def / 2)} de dano e deixou seu oponente com ${player.hp} de vida.`)
+                player.hp = player.hp - ((this.atk * 2) - player.def)
+                console.log(`O ataque causou ${(this.atk * 2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
                 player.def = player.def - 5
         }
         else{
@@ -168,12 +182,6 @@ class Guerreiro{
 
 const defensor = new Guerreiro('def', 120, 80, 35)
 const atacante = new Guerreiro('atk', 70, 50, 85)
-
-
-
-
-
-
 
 
 
