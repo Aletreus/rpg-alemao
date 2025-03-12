@@ -203,7 +203,7 @@ function stats(){
 var nomep1 = document.getElementById('nomep1')
 nomep1.textContent = `${defensor.pl}`
 var hpp1 = document.getElementById('hpp1')
-hpp1.textContent = `${defensor.hp}/${maxhp}`
+hpp1.textContent = `HP: ${defensor.hp}/${maxhp}`
 var atkp1 = document.getElementById('atkp1')
 atkp1.textContent = `ATK: ${defensor.atk}/${defensor.atk}`
 var defp1 = document.getElementById('defp1')
@@ -211,7 +211,7 @@ defp1.textContent = `DEF: ${defensor.def}/${defensor.def}`
 var nomep2 = document.getElementById('nomep2')
 nomep2.textContent = `${atacante.pl}`
 var hpp2 = document.getElementById('hpp2')
-hpp2.textContent = `${atacante.hp}/${maxhp}`
+hpp2.textContent = `HP: ${atacante.hp}/${maxhp}`
 var atkp2 = document.getElementById('atkp2')
 atkp2.textContent = `ATK: ${atacante.atk}/${atacante.atk}`
 var defp2 = document.getElementById('defp2')
