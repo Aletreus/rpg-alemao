@@ -46,7 +46,7 @@ aparelhotelemovel.alterarpreco(14500)
 */
 
 
-const maxhp = 150
+const maxhp = 200
 
 class Guerreiro{
     constructor(player, hp, defesa, ataque){
@@ -59,22 +59,33 @@ class Guerreiro{
     upgradeatk(ataque){
         this.atk += ataque
         console.log(`O Jogador ${this.pl} conseguiu um buff de ataque e aumentou seu ataque em ${ataque}.`)
+        stats()
     }
 
     upgradedef(defesa){
         this.def += defesa
         console.log(`O Jogador ${this.pl} conseguiu um buff de defesa e aumentou sua defesa em ${defesa}.`)
+        stats()
     }
 
 
     slash(player){
-        player.hp = player.hp - (this.atk - player.def)
-        player.def = player.def - 5
-        console.log(`O ataque causou ${this.atk - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
+        if(this.atk < (player.def / 2)){
+            console.log(`Seu ataque não causou dano pois a defesa do jogador ${player.pl} é muito alta.`)
+            player.def = player.def - this.atk
+        }
+        else{
+            player.hp = player.hp - (this.atk - (player.def / 2))
+            console.log(`O ataque causou ${this.atk - (player.def / 2)} de dano e deixou seu oponente com ${player.hp} de vida.`)
+            player.def = player.def - 5
+        }
+        this.morte(player)
+        stats()
     }
 
     info(player){
         console.log(`${this.pl}\nHP: ${this.hp}\nAtaque: ${this.atk}\nDefesa: ${this.def}`)
+        stats()
     }
 
     small(player){
@@ -83,6 +94,7 @@ class Guerreiro{
             player.hp = maxhp
         }
         console.log(`Jogador ${this.pl} usou uma poção de cura pequena e agora está com ${player.hp} de vida`)
+        stats()
     }
 
     medium(player){
@@ -91,6 +103,7 @@ class Guerreiro{
             player.hp = maxhp
         }
         console.log(`Jogador ${this.pl} usou uma poção de cura média e agora está com ${player.hp} de vida`)
+        stats()
     }
 
     big(player){
@@ -99,85 +112,82 @@ class Guerreiro{
             player.hp = maxhp
         }
         console.log(`Jogador ${this.pl} usou uma poção de cura grande e agora está com ${player.hp} de vida`)
+        stats()
     }
 
     escalibur(player){
         this.atk += 60
         console.log(`O Jogador ${this.pl} pegou a ESCALIBUR e aumentou seu ataque em 100 de dano.`)
+        stats()
     }
 
     mjolnir(player){
         this.atk += 90
         console.log(`O Jogador ${this.pl} pegou O MJOLNIR e aumentou seu ataque em 200.`)
+        stats()
     }
 
     ornamental(player){
         this.def += 50
         console.log(`O Jogador ${this.pl} pegou o escudo ornamental e aumentou sua defesa em 100.`)
+        stats()
     }
 
     pesado(player){
         this.def += 80
         console.log(`O Jogador ${this.pl} pegou o escudo pesado e aumentou sua defesa em 100.`)
+        stats()
     }
 
     critico(player){
         var chance = Math.floor(Math.random() * 20) + 1
         console.log(`chance ${chance}`)
         if(chance>=15){
-                player.hp = player.hp - ((this.atk * 2) - player.def)
+                player.hp = player.hp - ((this.atk * 2) - (player.def / 2))
+                console.log(`O ataque causou ${(this.atk * 2) - (player.def / 2)} de dano e deixou seu oponente com ${player.hp} de vida.`)
                 player.def = player.def - 5
-                console.log(`O ataque causou ${(this.atk * 2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
         }
         else{
             console.log(`Você errou o ataque crítico.`)
         }
+        this.morte(player)
+        stats()
+    }
+
+    morte(player){
+        if(player.hp <= 0){
+            console.log(`O jogador ${player.pl} Morreu.`)
+            alert(`O jogador ${player.pl} Morreu.`)
+        }
+
+        }
+    }
+
+
+
+
+const defensor = new Guerreiro('def', 120, 80, 35)
+const atacante = new Guerreiro('atk', 70, 50, 85)
+
+
+
+
+
+
+
+
+
+
+
+
+function morte(){
+    if(defensor.hp <= 0){
+        console.log(`O jogador ${defensor.pl} Morreu.`)
+    }
+    if(atacante.hp <= 0){
+        console.log(`O jogador ${atacante.pl} Morreu.`)
     }
 }
-
-
-
-const defensor = new Guerreiro('def', 100, 40, 70)
-const atacante = new Guerreiro('def', 140, 10, 90)
-
-defensor.small(defensor)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if(defensor.hp <= 0){
-    console.log(`O jogador ${defensor.pl} Morreu.`)
-}
-if(atacante.hp <= 0){
-    console.log(`O jogador ${atacante.pl} Morreu.`)
-}
-
 
 
 
