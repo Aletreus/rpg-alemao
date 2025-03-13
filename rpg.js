@@ -11,6 +11,8 @@ const maxor = 1
 const rodada = 3
 
 
+
+
 class Guerreiro{
     constructor(player, hp, defesa, ataque){
         this.pl = player
@@ -33,15 +35,17 @@ class Guerreiro{
 
 
     slash(player){
-        if(this.atk < player.def){
-            console.log(`Seu ataque não causou dano pois a defesa do jogador ${player.pl} é muito alta.`)
+        if(this.atk - player.def < 0){
             player.def = player.def - this.atk
+            console.log(`O ataque causou 0 de dano mas causou ${this.atk} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
         }
+        
         else{
             player.hp = player.hp - (this.atk - player.def)
-            console.log(`O ataque causou ${this.atk - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 5
+            console.log(`O ataque quebrou o escudo do oponente e causou ${this.atk - player.def} de dano, deixando seu oponente com ${player.hp} de vida.`)
+            player.def = 0
         }
+    
         this.morte(player)
         stats()
     }
@@ -79,29 +83,30 @@ class Guerreiro{
     }
 
     escalibur(player){
-        this.atk += 60
+        this.atk += 50
         if(player.atk > maxatk){
             player.atk = maxatk
         }
-        console.log(`O Jogador ${this.pl} pegou a ESCALIBUR e aumentou seu ataque em 100 de dano.`)
+        console.log(`O Jogador ${this.pl} pegou a ESCALIBUR e aumentou seu ataque em 50 de dano.`)
         stats()
     }
 
     mjolnir(player){
-        this.atk += 90
+        this.atk += 75
         if(player.atk > maxatk){
             player.atk = maxatk
         }
-        console.log(`O Jogador ${this.pl} pegou O MJOLNIR e aumentou seu ataque em 200.`)
+        console.log(`O Jogador ${this.pl} pegou O MJOLNIR e aumentou seu ataque em 75.`)
         stats()
     }
 
     ornamental(player){
-        this.def += 50
+        this.def += 40
+        this.atk += 25
         if(player.def > maxdef){
             player.def = maxdef
         }
-        console.log(`O Jogador ${this.pl} pegou o escudo ornamental e aumentou sua defesa em 100.`)
+        console.log(`O Jogador ${this.pl} pegou o escudo ornamental e aumentou sua defesa em 40.`)
         stats()
     }
 
@@ -110,7 +115,7 @@ class Guerreiro{
         if(player.def > maxdef){
             player.def = maxdef
         }
-        console.log(`O Jogador ${this.pl} pegou o escudo pesado e aumentou sua defesa em 100.`)
+        console.log(`O Jogador ${this.pl} pegou o escudo pesado e aumentou sua defesa em 80.`)
         stats()
     }
 
@@ -118,127 +123,126 @@ class Guerreiro{
         var chance = Math.floor(Math.random() * 20) + 1
         console.log(`chance ${chance}`)
         if(chance == 11){
-            if((this.atk * 1.2) < player.def){
-                player.hp = player.hp - (this.atk * 1.2)
-                console.log(`O ataque causou ${(this.atk * 1.2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 1.2)
+            if((this.atk * 1.2) - player.def < 0){
+                player.def = player.def - this.atk * 1.2
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 1.2)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 1.2) - player.def)
-            console.log(`O ataque causou ${(this.atk * 1.2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 1.2) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 1.2) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        
-        }
+    }
         if(chance == 12){
-            if((this.atk * 1.4) < player.def){
-                player.hp = player.hp - (this.atk * 1.4)
-                console.log(`O ataque causou ${(this.atk * 1.4) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 1.4)
+            if((this.atk * 1.4) - player.def < 0){
+                player.def = player.def - this.atk * 1.4
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 1.4)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 1.4) - player.def)
-            console.log(`O ataque causou ${(this.atk * 1.4) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 1.4) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 1.4) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
+    }
         if(chance == 13){
-            if((this.atk * 1.6) < player.def){
-                player.hp = player.hp - (this.atk * 1.6)
-                console.log(`O ataque causou ${(this.atk * 1.6) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 1.6)
+            if((this.atk * 1.6) - player.def < 0){
+                player.def = player.def - this.atk * 1.6
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 1.6)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 1.6) - player.def)
-            console.log(`O ataque causou ${(this.atk * 1.6) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 1.6) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 1.6) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
+    }
         if(chance == 14){
-            if((this.atk * 1.8) < player.def){
-                player.hp = player.hp - (this.atk * 1.8)
-                console.log(`O ataque causou ${(this.atk * 1.8) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 1.8)
+            if((this.atk * 1.8) - player.def < 0){
+                player.def = player.def - this.atk * 1.8
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 1.8)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 1.8) - player.def)
-            console.log(`O ataque causou ${(this.atk * 1.8) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 1.8) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 1.8) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
+    }
         if(chance == 15){
-            if((this.atk * 2) < player.def){
-                player.hp = player.hp - (this.atk * 2)
-                console.log(`O ataque causou ${(this.atk * 2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 2)
+            if((this.atk * 2) - player.def < 0){
+                player.def = player.def - this.atk * 2
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 2) - player.def)
-            console.log(`O ataque causou ${(this.atk * 2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 2) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
+    }
         if(chance == 16){
-            if((this.atk * 2.2) < player.def){
-                player.hp = player.hp - (this.atk * 2.2)
-                console.log(`O ataque causou ${(this.atk * 2.2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 2.2)
+            if((this.atk * 2.2) - player.def < 0){
+                player.def = player.def - this.atk * 2.2
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2.2)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 2.2) - player.def)
-            console.log(`O ataque causou ${(this.atk * 2.2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 2.2) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2.2) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
+    }
         if(chance == 17){
-            if((this.atk * 2.4) < player.def){
-                player.hp = player.hp - (this.atk * 2.4)
-                console.log(`O ataque causou ${(this.atk * 2.4) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 2.4)
+            if((this.atk * 2.4) - player.def < 0){
+                player.def = player.def - this.atk * 2.4
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2.4)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 2.4) - player.def)
-            console.log(`O ataque causou ${(this.atk * 2.4) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 2.4) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2.4) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
+    }
         if(chance == 18){
-            if((this.atk * 2.6) < player.def){
-                player.hp = player.hp - (this.atk * 2.6)
-                console.log(`O ataque causou ${(this.atk * 2.6) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 2.6)
+            if((this.atk * 2.6) - player.def < 0){
+                player.def = player.def - this.atk * 2.6
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2.6)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 2.6) - player.def)
-            console.log(`O ataque causou ${(this.atk * 2.6) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 2.6) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2.6) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
+    }
         if(chance == 19){
-            if((this.atk * 2.8) < player.def){
-                player.hp = player.hp - (this.atk * 2.8)
-                console.log(`O ataque causou ${(this.atk * 2.8) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 2.8)
+            if((this.atk * 2.8) - player.def < 0){
+                player.def = player.def - this.atk * 2.8
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2.8)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 2.8) - player.def)
-            console.log(`O ataque causou ${(this.atk * 2.8) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 2.8) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2.8) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
+    }
         if(chance == 20){
-            if((this.atk * 3) < player.def){
-                player.hp = player.hp - (this.atk * 3)
-                console.log(`O ataque causou ${(this.atk * 3) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - (this.atk * 3)
+            if((this.atk * 3) - player.def < 0){
+                player.def = player.def - this.atk * 3
+                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 3)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
             }
+            
             else{
-            player.hp = player.hp - ((this.atk * 3) - player.def)
-            console.log(`O ataque causou ${(this.atk * 3) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-            player.def = player.def - 10
+                player.hp = player.hp - ((this.atk * 3) - player.def)
+                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 3) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
+                player.def = 0
         }
-        }
-        else{
+    }
+        if(chance <= 10){
             console.log(`Você errou o ataque crítico.`)
         }
         
@@ -248,6 +252,9 @@ class Guerreiro{
 
     morte(player){
         if(player.hp <= 0){
+            player.hp = 0
+            player.def = 0
+            player.atk = 0
             console.log(`O jogador ${player.pl} Morreu.`)
             alert(`O jogador ${player.pl} Morreu.`)
         }
@@ -279,11 +286,13 @@ function morte(){
 
 
 
+
+
 function stats(){
 var nomep1 = document.getElementById('nomep1')
 nomep1.textContent = `${defensor.pl}`
 var hpp1 = document.getElementById('hpp1')
-hpp1.textContent = `HP: ${defensor.hp}/${maxhp}`
+hpp1.textContent = `HP: ${Math.round(defensor.hp)}/${maxhp}`
 var atkp1 = document.getElementById('atkp1')
 atkp1.textContent = `ATK: ${defensor.atk}/${defensor.atk}`
 var defp1 = document.getElementById('defp1')
@@ -291,7 +300,7 @@ defp1.textContent = `DEF: ${defensor.def}/${defensor.def}`
 var nomep2 = document.getElementById('nomep2')
 nomep2.textContent = `${atacante.pl}`
 var hpp2 = document.getElementById('hpp2')
-hpp2.textContent = `HP: ${atacante.hp}/${maxhp}`
+hpp2.textContent = `HP: ${Math.round(atacante.hp)}/${maxhp}`
 var atkp2 = document.getElementById('atkp2')
 atkp2.textContent = `ATK: ${atacante.atk}/${atacante.atk}`
 var defp2 = document.getElementById('defp2')
