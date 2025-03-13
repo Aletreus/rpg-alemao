@@ -98,9 +98,11 @@ body{
     margin: 0 auto;
     width: 80%;
     height: 720px;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.601);
     position: relative;
     background-color: rgba(0, 0, 0, 0.61);
+    background-image: url(https://i0.wp.com/uploads.saigacdn.com/2020/04/sfii-sfv-free-images-00.jpg);
+    background-size: 100%;
 }
 .personagem2{
     position: absolute;
@@ -113,4 +115,17 @@ body{
     bottom: 0;
     height: 250px;
     left: 100px;
+}
+#ko{
+    margin: 0 auto;
+    text-align: center;
+    height: 30px;
+}
+#barradevida{
+    background-color: green;
+    height: 40px;
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
 }
