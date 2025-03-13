@@ -6,7 +6,7 @@
 #player1{
     background-image: linear-gradient(45deg, rgba(245, 5, 5, 0.592), white);
     width: 285px;
-    height: 400px;
+    height: 300px;
     margin: auto;
     padding: 10px;
     border-radius: 20px;
@@ -19,7 +19,7 @@
 #player2{
     background-image: linear-gradient(45deg, rgba(2, 24, 194, 0.763), white);
     width: 285px;
-    height: 400px;
+    height: 300px;
     margin: auto;
     padding: 10px;
     border-radius: 20px;
@@ -95,7 +95,7 @@ body{
     text-align: center;
 }
 #gameboard{
-    margin: 0 auto;
+    margin: auto;
     width: 80%;
     height: 720px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.601);
@@ -103,6 +103,7 @@ body{
     background-color: rgba(0, 0, 0, 0.61);
     background-image: url(https://i0.wp.com/uploads.saigacdn.com/2020/04/sfii-sfv-free-images-00.jpg);
     background-size: 100%;
+    border-radius: 10px;
 }
 .personagem2{
     position: absolute;
@@ -121,11 +122,13 @@ body{
     text-align: center;
     height: 30px;
 }
-#barradevida{
+.barradevida{
     background-color: green;
     height: 40px;
-    width: 800px;
-    margin: 0 auto;
-    text-align: center;
-
+    width: 500px;
+    margin: 10px;
+    font-size: 30px;
+    color: aliceblue;
+    text-align: left;
+    
 }
