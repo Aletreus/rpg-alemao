@@ -1,54 +1,15 @@
-/*
-class Produto{
-    constructor(nome, codigo, preco, quantidade){
-        this.cod = codigo;
-        this.nome = nome;
-        this.preco = preco;
-        this.quant = quantidade;
-    }
-
-    vender (quantidade){
-        this.quant -= quantidade;
-        console.log('Venda realizada. Quantidade atual do produto: ', this.quant);
-    }
-
-    lancarchegada (quantidade){
-        this.quant += quantidade
-        console.log('Recebimento de item contabilizado. Estoque atual: ', this.quant);
-    }
-
-    alterarpreco (preco){
-        this.preco = preco
-        console.log('Preço alterado para R$', this.preco);
-    }
-    verificarqtde (){
-        console.log('A quantidade em estoque deste item é: ', this.quant);
-    }
-}
-
-const aparelhotelemovel = new Produto('iPhone 15 Pro Max', 1, 15000, 500)
-aparelhotelemovel.vender(480);
-aparelhotelemovel.lancarchegada(500)
-aparelhotelemovel.verificarqtde()
-aparelhotelemovel.alterarpreco(14500)
-
-
-
-    escalibur (ataque){
-        this.atk = ataque
-        console.log(`Seu guerreiro recebeu um buff no ataque e agora o ataque dele da ${this.atk} de dano`)
-    }
-
-    bisento (ataque){
-        this.atk = ataque
-        console.log(`Seu guerreiro recebeu um buff no ataque e agora o ataque dele da ${this.atk} de dano`)
-    }
-*/
-
-
+const maxbig = 2
+const maxmed = 3
+const maxsmall = 5
 const maxhp = 250
 const maxdef = 500
 const maxatk = 250
+const maxesc = 1
+const maxmj = 1
+const maxpes = 1
+const maxor = 1
+const rodada = 3
+
 
 class Guerreiro{
     constructor(player, hp, defesa, ataque){
@@ -292,6 +253,8 @@ class Guerreiro{
         }
 
         }
+    
+    
     }
 
 
@@ -342,12 +305,3 @@ stats()
 
 
 
-/*if(chance>=15){
-                player.hp = player.hp - ((this.atk * 2) - player.def)
-                console.log(`O ataque causou ${(this.atk * 2) - player.def} de dano e deixou seu oponente com ${player.hp} de vida.`)
-                player.def = player.def - 5
-        }
-        else{
-            console.log(`Você errou o ataque crítico.`)
-        }
-*/
