@@ -1,22 +1,27 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
 #player1{
-    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.373), white);
+    background-image: linear-gradient(45deg, rgba(245, 5, 5, 0.592), white);
     width: 285px;
     height: 400px;
     margin: auto;
     padding: 10px;
     border-radius: 20px;
+    float: left;
 
 }
 *{
     font-family: Arial, Helvetica, sans-serif;
 }
 #player2{
-    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.373), white);
+    background-image: linear-gradient(45deg, rgba(2, 24, 194, 0.763), white);
     width: 285px;
     height: 400px;
     margin: auto;
     padding: 10px;
     border-radius: 20px;
+    float: right;
 
 }
 .hp{
@@ -75,4 +80,15 @@
     background-image: linear-gradient(45deg, rgb(145, 255, 0), rgb(77, 196, 41));
     height: 30px;
     border-radius: 10px;
+}
+body{
+    background-image:url(https://images.gamebanana.com/img/ss/mods/60b3b3871e802.jpg);
+    background-size: 100%;
+
+}
+#nomep1{
+    text-align: center;
+}
+#nomep2{
+    text-align: center;
 }
