@@ -4,21 +4,25 @@ const maxsmall = 5
 const maxhp = 250
 const maxdef = 500
 const maxatk = 250
-const maxesc = 1
-const maxmj = 1
-const maxpes = 1
-const maxor = 1
+const maxataque = 1
+const maxescudo = 2
 const rodada = 3
 
 
 
 
 class Guerreiro{
-    constructor(player, hp, defesa, ataque){
+    constructor(player, hp, defesa, ataque, pequena, mediana, grande, maximoataque, maximoescudo){
         this.pl = player
         this.hp = hp
         this.def = defesa
         this.atk = ataque
+        this.peq = pequena
+        this.medi = mediana
+        this.grande = grande
+        this.maxatq = maximoataque
+        this.maxesc = maximoescudo
+
     }
 
     upgradeatk(ataque){
@@ -56,73 +60,115 @@ class Guerreiro{
     }
 
     small(player){
-        player.hp = player.hp + 25
-        if(player.hp > maxhp){
-            player.hp = maxhp
+        if(player.peq >= maxsmall){
+            console.log(`Você já utilizou o máximo de poções de cura pequena que tinha`)
         }
-        console.log(`Jogador ${this.pl} usou uma poção de cura pequena e agora está com ${player.hp} de vida`)
-        stats()
+        else{
+            player.peq += 1
+            player.hp = player.hp + 25
+            if(player.hp > maxhp){
+                player.hp = maxhp
+            }
+            console.log(`Jogador ${this.pl} usou uma poção de cura pequena e agora está com ${player.hp} de vida.\nVocê ainda tem ${maxsmall - player.peq} poções de cura pequena para utilizar.`)
+            stats()
+        }
     }
 
     medium(player){
-        player.hp = player.hp + 50
-        if(player.hp > maxhp){
-            player.hp = maxhp
+        if(player.medi >= maxmed){
+            console.log(`Você já utilizou o máximo de poções de cura pequena que tinha`)
         }
-        console.log(`Jogador ${this.pl} usou uma poção de cura média e agora está com ${player.hp} de vida`)
-        stats()
+        else{
+            player.medi += 1
+            player.hp = player.hp + 50
+            if(player.hp > maxhp){
+                player.hp = maxhp
+            }
+            console.log(`Jogador ${this.pl} usou uma poção de cura média e agora está com ${player.hp} de vida.\nVocê ainda tem ${maxmed - player.medi} poções de cura média para utilizar.`)
+            stats()
+        }
     }
 
     big(player){
-        player.hp = player.hp + 75
-        if(player.hp > maxhp){
-            player.hp = maxhp
+        if(player.grande >= maxbig){
+            console.log(`Você já utilizou o máximo de poções de cura grande que tinha`)
         }
-        console.log(`Jogador ${this.pl} usou uma poção de cura grande e agora está com ${player.hp} de vida`)
-        stats()
+        else{
+            player.grande += 1
+            player.hp = player.hp + 75
+            if(player.hp > maxhp){
+                player.hp = maxhp
+            }
+            console.log(`Jogador ${this.pl} usou uma poção de cura grande e agora está com ${player.hp} de vida.\nVocÊ ainda tem ${maxbig - player.grande} poções de cura grande para utilizar.`)
+            stats()
+    }
     }
 
     escalibur(player){
-        this.atk += 50
-        if(player.atk > maxatk){
-            player.atk = maxatk
+        if(player.maxatq >= maxataque){
+            console.log(`Você já pegou o número máximo de buffs de ataque`)
         }
-        console.log(`O Jogador ${this.pl} pegou a ESCALIBUR e aumentou seu ataque em 50 de dano.`)
-        stats()
+        else{
+            player.maxatq += 1
+            this.atk += 50
+            if(player.atk > maxatk){
+                player.atk = maxatk
+            }
+            console.log(`O Jogador ${this.pl} pegou a ESCALIBUR e aumentou seu ataque em 50 de dano.`)
+            stats()
+    }
     }
 
     mjolnir(player){
-        this.atk += 75
-        if(player.atk > maxatk){
-            player.atk = maxatk
+        if(player.maxatq >= maxataque){
+            console.log(`Você já pegou o número máximo de buffs de ataque`)
         }
-        console.log(`O Jogador ${this.pl} pegou O MJOLNIR e aumentou seu ataque em 75.`)
-        stats()
+        else{
+            player.maxatq += 1
+            this.atk += 75
+            if(player.atk > maxatk){
+                player.atk = maxatk
+            }
+            console.log(`O Jogador ${this.pl} pegou o MJOLNIR e aumentou seu ataque em 75 de dano.`)
+            stats()
+    }
     }
 
     ornamental(player){
-        this.def += 40
-        this.atk += 25
-        if(player.def > maxdef){
-            player.def = maxdef
+        if(player.maxesc >= maxescudo){
+            console.log(`Você já pegou o número máximo de buffs de escudo`)
         }
-        console.log(`O Jogador ${this.pl} pegou o escudo ornamental e aumentou sua defesa em 40.`)
-        stats()
+        else{
+            player.maxesc += 1
+            this.def += 40
+            this.atk += 25
+            if(player.def > maxdef){
+                player.def = maxdef
+            }
+            console.log(`O Jogador ${this.pl} pegou o escudo ornamental e aumentou sua defesa em 40 e seu ataque em 25.`)
+            stats()
+    }
     }
 
     pesado(player){
-        this.def += 80
-        if(player.def > maxdef){
-            player.def = maxdef
+        if(player.maxesc >= maxescudo){
+            console.log(`Você já pegou o número máximo de buffs de escudo`)
         }
-        console.log(`O Jogador ${this.pl} pegou o escudo pesado e aumentou sua defesa em 80.`)
-        stats()
+        else{
+            player.maxesc += 1
+            this.def += 80
+            if(player.def > maxdef){
+                player.def = maxdef
+            }
+            console.log(`O Jogador ${this.pl} pegou o escudo pesado e aumentou sua defesa em 80.`)
+            stats()
     }
-
+    }
     critico(player){
         var chance = Math.floor(Math.random() * 20) + 1
         console.log(`chance ${chance}`)
-        if(chance == 11){
+        
+        if(chance == 16){
             if((this.atk * 1.2) - player.def < 0){
                 player.def = player.def - this.atk * 1.2
                 console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 1.2)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
@@ -134,7 +180,7 @@ class Guerreiro{
                 player.def = 0
         }
     }
-        if(chance == 12){
+        if(chance == 17){
             if((this.atk * 1.4) - player.def < 0){
                 player.def = player.def - this.atk * 1.4
                 console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 1.4)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
@@ -146,7 +192,7 @@ class Guerreiro{
                 player.def = 0
         }
     }
-        if(chance == 13){
+        if(chance == 18){
             if((this.atk * 1.6) - player.def < 0){
                 player.def = player.def - this.atk * 1.6
                 console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 1.6)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
@@ -158,7 +204,7 @@ class Guerreiro{
                 player.def = 0
         }
     }
-        if(chance == 14){
+        if(chance == 19){
             if((this.atk * 1.8) - player.def < 0){
                 player.def = player.def - this.atk * 1.8
                 console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 1.8)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
@@ -170,7 +216,7 @@ class Guerreiro{
                 player.def = 0
         }
     }
-        if(chance == 15){
+        if(chance == 20){
             if((this.atk * 2) - player.def < 0){
                 player.def = player.def - this.atk * 2
                 console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
@@ -182,67 +228,7 @@ class Guerreiro{
                 player.def = 0
         }
     }
-        if(chance == 16){
-            if((this.atk * 2.2) - player.def < 0){
-                player.def = player.def - this.atk * 2.2
-                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2.2)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
-            }
-            
-            else{
-                player.hp = player.hp - ((this.atk * 2.2) - player.def)
-                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2.2) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
-                player.def = 0
-        }
-    }
-        if(chance == 17){
-            if((this.atk * 2.4) - player.def < 0){
-                player.def = player.def - this.atk * 2.4
-                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2.4)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
-            }
-            
-            else{
-                player.hp = player.hp - ((this.atk * 2.4) - player.def)
-                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2.4) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
-                player.def = 0
-        }
-    }
-        if(chance == 18){
-            if((this.atk * 2.6) - player.def < 0){
-                player.def = player.def - this.atk * 2.6
-                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2.6)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
-            }
-            
-            else{
-                player.hp = player.hp - ((this.atk * 2.6) - player.def)
-                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2.6) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
-                player.def = 0
-        }
-    }
-        if(chance == 19){
-            if((this.atk * 2.8) - player.def < 0){
-                player.def = player.def - this.atk * 2.8
-                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 2.8)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
-            }
-            
-            else{
-                player.hp = player.hp - ((this.atk * 2.8) - player.def)
-                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 2.8) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
-                player.def = 0
-        }
-    }
-        if(chance == 20){
-            if((this.atk * 3) - player.def < 0){
-                player.def = player.def - this.atk * 3
-                console.log(`O ataque causou 0 de dano mas causou ${(this.atk * 3)} de dano ao escudo do oponente e deixou seu oponente com ${player.def} de escudo.`)
-            }
-            
-            else{
-                player.hp = player.hp - ((this.atk * 3) - player.def)
-                console.log(`O ataque quebrou o escudo do oponente e causou ${(this.atk * 3) - (player.def)} de dano, deixando seu oponente com ${player.hp} de vida.`)
-                player.def = 0
-        }
-    }
-        if(chance <= 10){
+        if(chance <= 15){
             console.log(`Você errou o ataque crítico.`)
         }
         
@@ -267,8 +253,8 @@ class Guerreiro{
 
 
 
-const defensor = new Guerreiro('def', 120, 80, 35)
-const atacante = new Guerreiro('atk', 70, 50, 85)
+const defensor = new Guerreiro('Marcos', 120, 80, 35, 0, 0, 0, 0, 0)
+const atacante = new Guerreiro('Henrique Muito Foda', 70, 50, 85, 0, 0, 0, 0, 0)
 
 
 
