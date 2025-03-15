@@ -7,12 +7,14 @@ const maxatk = 250
 const maxataque = 1
 const maxescudo = 2
 const rodada = 3
-
+const maxpocao = 2
+c = 0
+let contador = 0
 
 
 
 class Guerreiro{
-    constructor(player, hp, defesa, ataque, pequena, mediana, grande, maximoataque, maximoescudo){
+    constructor(player, hp, defesa, ataque, pequena, mediana, grande, maximoataque, maximoescudo, pocoes){
         this.pl = player
         this.hp = hp
         this.def = defesa
@@ -22,6 +24,7 @@ class Guerreiro{
         this.grande = grande
         this.maxatq = maximoataque
         this.maxesc = maximoescudo
+        this.pocao = pocoes
 
     }
 
@@ -145,6 +148,9 @@ class Guerreiro{
             if(player.def > maxdef){
                 player.def = maxdef
             }
+            if(player.atk > maxatk){
+                player.atk = maxatk
+            }
             console.log(`O Jogador ${this.pl} pegou o escudo ornamental e aumentou sua defesa em 40 e seu ataque em 25.`)
             stats()
     }
@@ -244,17 +250,37 @@ class Guerreiro{
             console.log(`O jogador ${player.pl} Morreu.`)
             alert(`O jogador ${player.pl} Morreu.`)
         }
-
-        }
-    
-    
     }
+    veneno(player){
+        if(this.pocao >= maxpocao){
+            console.log(`Você não possuí mais poções.`)
+        }
+        else{
+            const intervalo = setInterval(() => {
+                player.hp = player.hp - 5;
+                console.log(`${player.pl} tomou 5 de dano`);
+                contador ++;
+                if(contador == 15){
+                    clearInterval(intervalo);
+                }
+            }, 100);
+            stats()
+            morte(player)
+        }
+        
+        
+    }
+    
+    
+    
+    
+}
 
 
 
 
-const defensor = new Guerreiro('Marcos', 120, 80, 35, 0, 0, 0, 0, 0)
-const atacante = new Guerreiro('Henrique Muito Foda', 70, 50, 85, 0, 0, 0, 0, 0)
+const defensor = new Guerreiro('Marcos', 120, 80, 35, 0, 0, 0, 0, 0, 0)
+const atacante = new Guerreiro('Henrique Muito Foda', 70, 50, 85, 0, 0, 0, 0, 0, 0)
 
 
 
@@ -269,7 +295,6 @@ function morte(){
         console.log(`O jogador ${atacante.pl} Morreu.`)
     }
 }
-
 
 
 
