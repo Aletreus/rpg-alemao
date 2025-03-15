@@ -8,8 +8,6 @@
 </head>
 <body>
     <div id="gameboard">
-        <div id="ko"><img src="https://static-cdn.jtvnw.net/jtv_user_pictures/e94cadf2-6a5b-42cd-a0d1-411b8b025d7a-profile_image-300x300.png" alt=""></div>
-        <div id="barradevida"></div>
         <main id="player1">
             <h2 id="nomep1" class="nome">Nome</h2>
             <h2 id="hpp1" class="hp">HP 100/100</h2>
@@ -33,6 +31,7 @@
             onclick="defensor.pesado(defensor)" class="pesado">
             <input type="button" value="Tentar crítico"
             onclick="defensor.critico(atacante)" class="critico">
+            <input type="button" value="Veneno" onclick="defensor.veneno(atacante)" class="venenos">
         </main>
         <img src="PF_Ken(2).gif" alt="" class="personagem">
         <main id="player2"> 
@@ -59,6 +58,7 @@
         onclick="atacante.pesado(atacante)" class="pesado">
         <input type="button" value="Tentar crítico"
         onclick="atacante.critico(defensor)" class="critico">
+        <input type="button" value="Veneno" onclick="atacante.veneno(defensor)" class="venenos">
     </main>
         <img src="PF_Ken.gif" alt="" class="personagem2">
     </div>
